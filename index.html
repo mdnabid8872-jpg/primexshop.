@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PrimeXshop – Free Fire Diamond Top Up</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<style>
+:root{--bg:#0a0c1f;--card:#12163a;--line:#232a5c;--text:#f2f4ff;--mute:#9aa3d6;--pri:#2f5bff;--acc:#ff4d2e;--ok:#3ddc84;--gold:#f6b93b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a0c1f;--card:#12163a;--line:#232a5c;--text:#f2f4ff;--mute:#9aa3d6}}
+*{box-sizing:border-box}
+html{height:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif;padding-bottom:90px}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.wrap{max-width:520px;margin:0 auto;padding:0 14px}
+header{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.logo{font-weight:900;font-size:24px;letter-spacing:-.5px;cursor:pointer}.logo b{color:var(--acc)}.logo span{color:var(--pri)}
+.btn{background:var(--pri);color:#fff;border:0;border-radius:12px;padding:10px 16px;font-weight:700;font-size:15px;cursor:pointer}
+.btn.ghost{background:var(--card);border:1px solid var(--line)}
+.btn.full{width:100%;padding:14px}
+.banner{border-radius:18px;padding:22px;margin:6px 0 14px;background:#f4f6ff;color:#0a1a6b;display:flex;align-items:center;justify-content:space-between;overflow:hidden}
+.banner h2{margin:0;font-size:20px}.banner em{color:#e0182d;font-style:normal}.banner h1{margin:0;font-size:30px;color:#2f5bff}.banner p{font-weight:800;margin:6px 0 0}
+.hero{font-size:84px}
+.links{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px}
+.links a{display:flex;align-items:center;gap:7px;text-align:left;padding:10px 8px;background:var(--card);border:1px solid var(--line);border-radius:12px;color:var(--text);text-decoration:none;font-size:13px;font-weight:600}
+.links i{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-style:normal;flex:none}
+.links span{display:flex;flex-direction:column;font-size:13px}.links small{font-size:10px;color:var(--mute);font-weight:500;letter-spacing:.5px}
+.spinbar{display:flex;align-items:center;gap:12px;background:linear-gradient(90deg,#4a3410,#2a1a2e);border:1px solid #8a6020;border-radius:16px;padding:14px;margin-bottom:6px;cursor:pointer;font-weight:700;font-size:15px}
+.spinbar i{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#f6b93b,#f08a2e);display:flex;align-items:center;justify-content:center;font-style:normal;font-size:24px;flex:none}
+.spinbar small{display:block;color:#f0a030;letter-spacing:.5px;font-size:12px}.spinbar b{margin-left:auto;color:#f0a030}
+h3{border-left:4px solid var(--pri);padding-left:10px;margin:18px 0 12px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;width:70%}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;text-align:center}
+.tile .img{height:90px;display:flex;align-items:center;justify-content:center;font-size:34px;background:linear-gradient(160deg,#1c2a8f,#0d1245)}
+.tile div:last-child{padding:9px 4px;font-size:12px;font-weight:700}
+.page{display:none}.page.on{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
+.stack{display:flex;flex-direction:column;gap:12px}
+.muted{color:var(--mute);font-size:14px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.bal{font-size:30px;font-weight:800;color:var(--gold)}
+.pill{font-size:12px;padding:3px 9px;border-radius:999px;background:var(--bg);color:var(--mute);white-space:nowrap}
+.pill.ok{color:var(--ok)}.pill.wait{color:var(--gold)}
+.err{color:#ff7a6a;font-size:14px;min-height:18px}
+.ttl{font-size:20px;font-weight:800;margin:18px 0 12px}
+.tabs{display:flex;gap:8px}.tabs button{flex:1;padding:10px;border-radius:12px;background:var(--card);border:1.5px solid var(--line);font-size:14px;cursor:pointer}
+.tabs button.on{border-color:var(--pri);background:rgba(47,91,255,.18)}
+label{display:block;font-size:13px;color:var(--mute);margin:12px 0 6px}
+input,select,textarea{width:100%;padding:13px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--text);font-size:16px}
+.pk{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.opt{border:1.5px solid var(--line);border-radius:12px;padding:11px;cursor:pointer;font-size:14px}
+.opt small{display:block;color:var(--mute);margin-top:3px}
+.opt.sel{border-color:var(--pri);background:rgba(47,91,255,.18)}
+.pay{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pay .opt{text-align:center;font-weight:700}
+.total{display:flex;justify-content:space-between;margin:16px 0;font-weight:800;font-size:17px}
+.msg{margin-top:10px;font-size:14px;color:#7dffb0}
+.chips{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.chips a{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border-radius:12px;background:var(--card);border:1px solid var(--line);color:var(--text);text-decoration:none;font-weight:700}
+nav{position:fixed;left:0;right:0;bottom:0;background:#0d1030;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:10px 0 calc(10px + env(safe-area-inset-bottom,0px));z-index:10}
+nav a{color:var(--mute);font-size:12px;text-align:center;text-decoration:none;font-weight:600;cursor:pointer}
+nav a.on{color:var(--pri)}nav a i{display:block;font-style:normal;font-size:20px}
+nav a.add{margin-top:-34px;color:#2f5bff;font-weight:800}
+nav a.add u{display:flex;width:62px;height:62px;border-radius:50%;background:var(--pri);color:#fff;align-items:center;justify-content:center;font-size:26px;text-decoration:none;margin:0 auto 4px;border:5px solid #0d1030}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:flex-end;justify-content:center;z-index:20}
+.modal.on{display:flex}
+.sheet{background:var(--card);width:100%;max-width:520px;border-radius:22px 22px 0 0;padding:18px;max-height:90%;overflow:auto}
+.sheet h4{margin:0 0 12px;font-size:18px}
+.spin{background:linear-gradient(#3a1a7a,#12062e);border-radius:28px;padding:20px;width:92%;max-width:400px;text-align:center;position:relative}
+.spin h4{font-size:24px;margin:10px 0}.x{position:absolute;right:14px;top:14px;width:36px;height:36px;border-radius:50%;border:1px solid #6a4ac0;background:transparent;color:#fff;font-size:16px;cursor:pointer}
+.chip{display:inline-block;border:1px solid #6a4ac0;border-radius:20px;padding:5px 14px;color:#f6c84a;font-weight:800;letter-spacing:2px;font-size:12px}
+.wheel{position:relative;width:250px;height:250px;border-radius:50%;margin:10px auto 18px;border:6px solid #1a0a3a;box-shadow:0 0 0 4px #6a4ac0}
+.wheel::before{content:"";position:absolute;top:-16px;left:50%;margin-left:-9px;border:9px solid transparent;border-bottom:16px solid #f6c84a;z-index:2}
+.hub{position:absolute;left:50%;top:50%;width:62px;height:62px;margin:-31px;border-radius:50%;background:#2a1568;display:flex;align-items:center;justify-content:center;font-size:26px;z-index:2}
+.lb{position:absolute;left:50%;top:50%;width:46px;margin:-14px -23px;font-size:12px;font-weight:800;white-space:pre-line;line-height:1.2}
+.spbtn{width:100%;padding:16px;background:linear-gradient(90deg,#f6b93b,#f08a2e);color:#1a1000;font-size:18px;border-radius:26px;border:0;font-weight:700;cursor:pointer}
+.note{display:inline-block;margin-top:12px;border:1px solid #6a4a20;border-radius:20px;padding:8px 16px;font-size:14px;color:#f6d8a0}
+.fab{position:fixed;right:16px;bottom:130px;width:54px;height:54px;border-radius:50%;background:#d8302f;display:flex;align-items:center;justify-content:center;font-size:24px;z-index:9;cursor:pointer;border:0}
+.toast{position:fixed;left:50%;bottom:100px;transform:translate(-50%,20px);background:#eef2ff;color:#0a0c1f;padding:10px 16px;border-radius:10px;font-size:14px;font-weight:700;opacity:0;transition:all .25s;z-index:50;white-space:nowrap;pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+[hidden]{display:none!important}
+.gbtn{width:100%;display:flex;align-items:center;justify-content:center;gap:12px;padding:16px;border-radius:14px;background:#fff;color:#1f1f1f;border:0;font-size:17px;font-weight:700;cursor:pointer}
+.gbtn:disabled{opacity:.6}
+
+.linkbtn{background:none;border:0;color:var(--pri);font-weight:700;cursor:pointer;font-size:14px;padding:4px}
+
+
+/* ===== UID Top Up page (screenshot layout) ===== */
+.bhead{display:flex;gap:14px;align-items:center;margin:10px 0 16px}
+.bicon{width:72px;height:72px;flex:none;border-radius:16px;background:radial-gradient(#4a2a8a,#14183a);display:flex;align-items:center;justify-content:center;font-size:36px;border:1px solid var(--line)}
+.bhead h2{font-size:22px;font-weight:800}
+.bbadges{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.bbadges span{border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:12px;color:var(--mute)}
+.pkg{position:relative;display:flex;flex-direction:column;gap:6px;align-items:flex-start;padding:14px 12px;border-radius:14px;border:1.5px solid var(--line);background:var(--card);color:var(--text);cursor:pointer;text-align:left;font:inherit;min-height:74px}
+.pkg .pn{font-weight:700;font-size:15px}
+.pkg b{color:var(--gold);font-size:15px}
+.pkg.on{border-color:var(--pri);background:rgba(47,91,255,.18)}
+.pkg .ck2{position:absolute;top:8px;right:8px;width:20px;height:20px;border-radius:50%;background:var(--pri);color:#fff;font-size:12px;display:none;align-items:center;justify-content:center}
+.pkg.on .ck2{display:flex}
+.qtyrow{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:18px}
+.qtyrow h3{border:0;padding:0;margin:0;font-size:18px}
+.stepper{display:flex;align-items:center;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card)}
+.stepper button{width:44px;height:44px;background:none;color:var(--text);font-size:20px;border:0;cursor:pointer}
+.stepper span{min-width:44px;text-align:center;font-weight:700}
+.summary{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:6px 14px;margin-top:14px}
+.srow{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
+.srow:last-child{border-bottom:0}
+.srow span{color:var(--mute)}
+.srow b{text-align:right;word-break:break-all}
+.srow.tot b{color:#5b86ff;font-size:18px}
+.paybtn{width:100%;margin-top:14px;padding:16px;border-radius:14px;background:var(--surface-2,#1d2a5c);color:var(--mute);font-size:17px;font-weight:700;border:0;cursor:pointer}
+.paybtn.ready{background:var(--pri);color:#fff}
+.notes{display:flex;flex-direction:column;gap:12px;margin-top:6px}
+.notes div{display:flex;gap:10px;font-size:14px;color:var(--mute);line-height:1.6}
+.notes i{font-style:normal;flex:none}
+.rel{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+.relc{border:1px solid var(--line);border-radius:14px;padding:10px 6px;text-align:center;background:var(--card);cursor:pointer;font-size:13px;font-weight:700}
+.relc .rimg{height:74px;display:flex;align-items:center;justify-content:center;font-size:30px;background:linear-gradient(160deg,#1c2a8f,#0d1245);border-radius:10px;margin-bottom:8px}
+
+
+/* ===== Buy page ===== */
+#buyUid{font-size:19px;padding:16px 14px;letter-spacing:.5px}
+.sub-h{display:flex;align-items:center;gap:12px;margin:22px 0 4px}
+.sub-h .bic{width:44px;height:44px;border-radius:50%;background:var(--pri);display:flex;align-items:center;justify-content:center;font-size:20px;flex:none}
+.sub-h h3{border:0;padding:0;margin:0;font-size:20px}
+.uidcard{display:flex;gap:12px;align-items:center;border:1.5px solid #3a4580;border-radius:18px;padding:14px;margin-top:12px;background:linear-gradient(90deg,rgba(47,91,255,.12),transparent)}
+.uava{width:64px;height:64px;flex:none;border-radius:50%;background:radial-gradient(#3b1f7a,#14183a);border:2px solid #2f5bff;display:flex;align-items:center;justify-content:center;font-size:28px}
+.uinfo{flex:1;min-width:0}
+.uinfo strong{font-size:18px;word-break:break-all}
+.ubadge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 9px;font-size:12px;color:var(--mute);margin-left:4px}
+.uck{width:40px;height:40px;flex:none;border-radius:50%;background:var(--pri);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px}
+.demo{color:var(--gold);font-size:12px;margin-top:6px}
+.recent{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.rchip{padding:8px 12px;border-radius:12px;background:var(--card);border:1px solid var(--line);color:var(--text);font-weight:700;cursor:pointer}
+.pkgs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.pkg{display:flex;flex-direction:column;gap:4px;align-items:flex-start;padding:12px;border-radius:14px;border:1.5px solid var(--line);background:var(--card);color:var(--text);cursor:pointer;text-align:left;font:inherit}
+.pkg b{color:var(--gold)}
+.pkg.on{border-color:var(--pri);background:rgba(47,91,255,.15)}
+.pm2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.pmx{border:2px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;background:var(--card);text-align:center;position:relative}
+.pmx.on{border-color:var(--pri)}
+.pmx .top{height:76px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px}
+.pmx .wal{background:#8e9199;color:#fff}
+.pmx .dp{background:#fff;color:#0a1a6b;font-size:14px}
+.pmx .lbl{padding:10px;font-weight:700;font-size:14px}
+.pmx .lbl small{display:block;color:var(--mute);font-weight:500}
+.pmx .ck{position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:50%;background:var(--pri);color:#fff;font-size:13px;display:none;align-items:center;justify-content:center}
+.pmx.on .ck{display:flex}
+.buybar{position:fixed;left:0;right:0;bottom:calc(74px + env(safe-area-inset-bottom,0px));z-index:9;display:none;background:var(--surface-2,#121a33);border-top:1px solid var(--line);padding:12px 14px}
+.buybar.on{display:block}
+.buybar .in{max-width:520px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.buybar small{display:block;color:var(--mute);font-size:12px;letter-spacing:.8px;font-weight:700}
+.buybar strong{display:block;font-size:17px}
+.buybar b{color:#5b86ff;font-size:20px}
+.buybar button{padding:14px 26px;border-radius:14px;background:var(--surface-2,#1d2a5c);color:var(--mute);font-weight:700;font-size:17px;border:0;cursor:pointer}
+.buybar button.ready{background:var(--pri);color:#fff}
+.buyspace{height:170px}
+
+
+/* ===== Profile page ===== */
+.pf-hero{position:relative;margin-top:10px;padding-top:62px}
+.pf-cover{position:absolute;inset:0 0 auto 0;height:120px;border-radius:20px;background:linear-gradient(120deg,#2f5bff,#2a1f6b);overflow:hidden}
+.pf-cover::after{content:"";position:absolute;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.1);right:-40px;top:-60px}
+.pf-card{position:relative;margin-top:50px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:58px 16px 18px;text-align:center}
+.pf-av{position:absolute;left:50%;top:-44px;transform:translateX(-50%);width:96px;height:96px;border-radius:50%;border:4px solid #1ed760;background:#1a2446 center/cover no-repeat;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:800;color:#fff;box-shadow:0 0 0 4px var(--card)}
+.pf-card h2{font-size:24px;font-weight:800}
+.pf-badges{margin:8px 0}
+.pf-badges span{display:inline-block;background:rgba(30,215,96,.15);color:#1ed760;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:700}
+.pf-mail{color:#8fb0ff;text-decoration:underline;font-size:15px;word-break:break-all}
+.pf-id{display:inline-block;margin:10px 0;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:14px;color:var(--mute)}
+.pf-id b{color:var(--text)}
+.pf-join{color:var(--mute);font-size:13px}
+.stat3{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}
+.stat.wide{grid-column:1/2}
+.stat .si{width:42px;height:42px;border-radius:12px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:12px}
+.stat .sv{font-size:26px;font-weight:800}
+.stat .sl{font-size:15px;font-weight:700;margin-top:4px}
+.stat .ss{color:var(--mute);font-size:13px}
+.bonus{overflow:hidden;position:relative}
+.bonus h4{margin-bottom:4px}
+.prog{background:var(--bg);border-radius:14px;padding:14px;margin:12px 0}
+.prow{display:flex;justify-content:space-between;font-size:14px;color:var(--mute);margin:4px 0}
+.prow b{color:var(--text)}
+.bar{height:8px;background:var(--line);border-radius:6px;overflow:hidden;margin:8px 0}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2f5bff,#7a5cff);border-radius:6px;transition:width .4s}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tier{border:1px solid var(--line);border-radius:14px;padding:12px 6px;text-align:center;background:var(--bg);position:relative}
+.tier .lv{font-size:11px;color:var(--mute);margin-bottom:4px}
+.tier .tm{font-size:34px}
+.tier .tn{font-weight:700;font-size:14px;margin-top:2px}
+.tier .tt{color:var(--mute);font-size:12px}
+.tier.locked{opacity:.6}
+.tier .lk{position:absolute;top:8px;right:8px;font-size:11px}
+.qa{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+.qa a{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--line);border-radius:14px;background:var(--bg);text-decoration:none;color:var(--text);cursor:pointer}
+.qa .qi{width:44px;height:44px;flex:none;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff}
+.qa small{display:block;color:var(--mute);font-size:11px;letter-spacing:.8px;text-transform:uppercase;font-weight:700}
+.qa strong{font-size:15px}
+.qa .ar{margin-left:auto;color:var(--mute)}
+.coinbox{border:1px solid #6a4a20;border-radius:16px;padding:14px;display:flex;justify-content:space-between;align-items:center;margin-top:12px;background:linear-gradient(90deg,rgba(246,185,59,.12),transparent)}
+.coinbox .cl{display:flex;gap:12px;align-items:center}
+.coinbox .coin{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#f6b93b,#f08a2e);display:flex;align-items:center;justify-content:center;font-size:22px}
+.coinbox small{color:var(--mute);font-size:11px;letter-spacing:.8px;font-weight:700;display:block}
+.coinbox b{font-size:22px}
+.coinbox .eq{border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:13px;color:var(--mute)}
+.rewgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.rewgrid div{border:1px solid var(--line);border-radius:14px;padding:12px;background:var(--bg)}
+.rewgrid small{display:block;color:var(--mute);font-size:11px;font-weight:700;letter-spacing:.8px}
+.rewgrid strong{font-size:17px}
+.pf-cta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.pf-cta .btn{padding:14px;font-size:15px}
+.spinempty{border:1px solid var(--line);border-radius:14px;background:var(--bg);padding:18px;text-align:center;color:var(--mute);margin-top:12px;font-size:14px}
+
+
+/* ===== Add Money page ===== */
+.amhead{display:flex;align-items:center;gap:12px;margin:10px 0 14px}
+.amhead .back{width:40px;height:40px;border-radius:12px;background:var(--card);border:1px solid var(--line);font-size:18px;cursor:pointer;flex:none}
+.amhead h2{font-size:24px;font-weight:800;line-height:1.1}
+.amhead p{color:var(--mute);font-size:14px;margin-top:2px}
+.amcard{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:14px}
+.wtag{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:13px;color:var(--mute)}
+.amcard .lab{color:var(--mute);font-size:15px;margin-top:12px}
+.amcard .bigbal{font-size:40px;font-weight:800;margin-top:2px}
+.amcard .hint{color:var(--mute);font-size:14px;margin-top:12px;display:flex;gap:8px;align-items:center}
+.sec-lbl{font-size:13px;font-weight:700;color:var(--mute);letter-spacing:.8px;text-transform:uppercase;margin-bottom:10px}
+.gwtile{width:170px;border-radius:14px;border:2px solid var(--pri);background:#fff;overflow:hidden;position:relative;cursor:pointer;text-align:center}
+.gwtile .gwlogo{height:82px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#0a1a6b;font-weight:800;font-size:14px}
+.gwtile .gwlogo span{font-size:13px}
+.gwtile .gwlogo .mw{display:flex;gap:6px;font-size:13px}
+.gwtile .gwfoot{background:var(--card);padding:10px 6px;color:#4d7cff;font-weight:700;font-size:13px;line-height:1.3}
+.gwtile .gwfoot small{display:block;font-size:12px}
+.gwtile .tick{position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:50%;background:var(--pri);color:#fff;font-size:13px;display:flex;align-items:center;justify-content:center}
+.amwrap{position:relative;margin-top:8px}
+.amwrap .pre{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:22px;color:var(--mute);pointer-events:none}
+.amwrap input{padding:18px 16px 18px 42px;font-size:26px;font-weight:700;border-radius:16px}
+.chipsrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.chipsrow button{padding:10px 16px;border-radius:12px;background:var(--bg);border:1px solid var(--line);color:var(--ink);font-weight:700;font-size:14px;cursor:pointer}
+.chipsrow button.on{border-color:var(--pri);background:rgba(47,91,255,.15)}
+.limits{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--bg);border-radius:12px;padding:12px;margin-top:12px;font-size:14px;color:var(--mute)}
+.limits b{color:var(--ink)}
+.addbtn{width:100%;margin-top:14px;padding:16px;border-radius:14px;background:var(--surface-2,#1d2a5c);border:1px solid var(--line);color:var(--mute);font-size:17px;font-weight:700;cursor:pointer}
+.addbtn.ready{background:var(--pri);border-color:var(--pri);color:#fff}
+.trust{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;color:var(--mute);font-size:13px;margin-top:14px}
+.trust span{display:inline-flex;gap:6px;align-items:center}
+.trust+.trust{margin-top:4px}
+.rtx-h{display:flex;gap:12px;align-items:center;padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:14px}
+.rtx-h .ic{width:42px;height:42px;border-radius:12px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:18px}
+.rtx-h strong{font-size:17px;display:block}
+.rtx-h small{color:var(--mute);font-size:13px}
+.rtx-empty{border:1px dashed var(--line);border-radius:16px;padding:28px 12px;text-align:center;color:var(--mute)}
+.rtx-empty .ic{width:50px;height:50px;border-radius:14px;background:var(--bg);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.rtx-empty strong{display:block;color:var(--ink);font-size:16px;margin-bottom:4px}
+.stickyadd{position:fixed;left:0;right:0;bottom:calc(74px + env(safe-area-inset-bottom,0px));z-index:9;display:none;padding:0 14px}
+.stickyadd.on{display:block}
+.stickyadd .wrapin{max-width:520px;margin:0 auto}
+.stickyadd button{width:100%;padding:14px;border-radius:14px;background:var(--surface-2,#1d2a5c);border:1px solid var(--line);color:var(--mute);font-size:16px;font-weight:700;cursor:pointer}
+.stickyadd button.ready{background:var(--pri);border-color:var(--pri);color:#fff}
+.hbal{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;cursor:pointer;color:var(--text);margin-right:8px}
+
+
+/* ===== Support page ===== */
+.cu{margin-top:14px;padding:6px 4px}
+.cu-top{display:flex;gap:14px;align-items:flex-start}
+.cu-ic{width:72px;height:72px;flex:none;border-radius:18px;background:var(--card);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:30px}
+.cu h2{font-size:24px;font-weight:800}
+.uline{width:56px;height:3px;background:var(--pri);border-radius:2px;margin:6px 0 10px}
+.cu p{color:var(--mute);font-size:15px;line-height:1.6}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.badges span{border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:13px;color:var(--mute);display:inline-flex;align-items:center;gap:6px}
+.badges b{color:var(--text)}
+.dotg{width:8px;height:8px;border-radius:50%;background:#1ed760;display:inline-block}
+.ccards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.ccard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:6px;min-height:170px}
+.ccard.full{grid-column:1/-1;min-height:0}
+.ccard .ci{font-size:30px}
+.ccard h3{font-size:17px;border:0;padding:0;margin:8px 0 0}
+.ccard p{color:var(--mute);font-size:14px;margin:0}
+.ccard .cl{margin-top:auto;color:var(--pri);font-weight:700;font-size:15px}
+.stabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:20px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.stabs button{padding:14px 6px;border-radius:14px;background:var(--card);border:1px solid var(--line);font-size:14px;font-weight:700;line-height:1.3;cursor:pointer}
+.stabs button.on{background:var(--pri);border-color:var(--pri);color:#fff}
+.tbox{margin-top:14px;background:linear-gradient(180deg,#261d2e,#1a1424);border:1px solid #4a3a20;border-radius:20px;padding:24px 18px;text-align:center}
+.tbox .tic{font-size:40px;margin-bottom:10px}
+.tbox h4{font-size:20px;margin-bottom:10px}
+.tbox p{color:var(--mute);font-size:15px;line-height:1.7;margin-bottom:18px}
+.tbox .btn{min-width:200px}
+.tform{text-align:left;display:flex;flex-direction:column;gap:6px}
+.tform label{margin:8px 0 0}
+.tform textarea{width:100%;padding:13px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--text);font:inherit;font-size:16px;resize:vertical}
+.tform input[readonly]{opacity:.75}
+.tform .btn{margin-top:12px;width:100%}
+.hist{text-align:left;display:flex;flex-direction:column;gap:10px}
+.hist .card{padding:12px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:16px}
+.panel h4{font-size:18px;display:flex;align-items:center;gap:10px;margin-bottom:14px}
+details.faq{border:1px solid var(--line);border-radius:14px;margin-top:10px;background:var(--bg)}
+details.faq summary{list-style:none;cursor:pointer;padding:14px;display:flex;gap:12px;align-items:center;font-weight:700;font-size:15px;line-height:1.4}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq .n{width:34px;height:34px;flex:none;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--mute)}
+details.faq summary::after{content:"›";margin-left:auto;font-size:22px;color:var(--mute);transition:transform .2s}
+details.faq[open] summary::after{transform:rotate(90deg)}
+details.faq .ans{padding:0 14px 14px 60px;color:var(--mute);font-size:14px;line-height:1.7}
+.biz{display:flex;gap:12px;align-items:flex-start;margin-top:14px}
+.biz .bi{width:44px;height:44px;flex:none;border-radius:12px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:18px}
+.biz small{display:block;color:var(--mute);font-size:13px}
+.biz strong{font-size:16px;word-break:break-all}
+.copy{margin-left:8px;color:var(--mute);cursor:pointer;background:none;border:0;font-size:16px}
+.follow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.follow a{border:1.5px solid #3a4580;border-radius:16px;padding:18px;text-align:center;color:var(--text);text-decoration:none;font-weight:700;font-size:16px}
+.empty{color:var(--mute);text-align:center;padding:18px 0;font-size:14px}
+.sup-list a{display:flex;gap:14px;align-items:center;border:1px solid var(--line);border-radius:16px;padding:14px;margin-top:10px;text-decoration:none;color:var(--text);background:var(--card)}
+.sup-list .hx{width:52px;height:52px;flex:none;display:flex;align-items:center;justify-content:center;font-size:22px;border-radius:12px;background:var(--bg);border:1px solid var(--line)}
+.sup-list small{display:block;color:var(--mute);font-size:12px;letter-spacing:.8px;text-transform:uppercase;font-weight:700}
+.sup-list strong{font-size:16px}
+.infolist a{display:block;padding:14px 4px;border-bottom:1px solid var(--line);color:var(--mute);text-decoration:none;font-size:16px}
+.foot{margin-top:24px;border-top:1px solid var(--line);padding:24px 0 6px;text-align:center;color:var(--mute);font-size:14px}
+.foot .fc{border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:14px;text-align:left}
+.foot .fc strong{font-size:18px;color:var(--text)}
+
+
+/* ===== Login screen ===== */
+.lcard{position:relative;margin:14px 0 110px;background:#12142b;border:1px solid var(--line);border-radius:22px;overflow:hidden;padding:0 18px 22px}
+.lband{height:150px;margin:0 -18px;background:linear-gradient(120deg,#2f5bff 0%,#4a7bff 55%,#2a46c4 100%);position:relative}
+.lband::before,.lband::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.12)}
+.lband::before{width:150px;height:150px;left:-30px;bottom:-60px}
+.lband::after{width:170px;height:170px;right:-40px;top:-60px}
+.licon{width:92px;height:92px;margin:-46px auto 0;border-radius:22px;background:#2d4fd1;display:flex;align-items:center;justify-content:center;font-size:40px;position:relative;box-shadow:0 0 0 10px #12142b}
+.lcard h2{text-align:center;font-size:30px;margin:22px 0 6px;font-weight:800}
+.lsub{text-align:center;color:var(--mute);font-size:16px;margin-bottom:24px}
+.gbtn{width:100%;display:flex;align-items:center;justify-content:center;gap:12px;padding:16px;border-radius:14px;background:transparent;border:1.5px solid var(--line);font-size:17px;font-weight:700;cursor:pointer}
+.gbtn:hover{border-color:var(--pri)}
+.gg{font-size:22px;font-weight:800;background:conic-gradient(#ea4335 0 25%,#fbbc05 0 50%,#34a853 0 75%,#4285f4 0);-webkit-background-clip:text;background-clip:text;color:transparent}
+#gHost{display:flex;justify-content:center;margin-top:0}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0 18px}
+.feat div{border:1px solid var(--line);border-radius:16px;padding:18px 6px 16px;text-align:center;font-size:14px;font-weight:700;color:var(--mute)}
+.feat span{display:block;font-size:24px;margin-bottom:8px;color:var(--pri)}
+.sep{height:1px;background:var(--line);margin:4px 0 18px;position:relative}
+.create{text-align:center;color:var(--mute);font-size:16px}
+.create a{color:var(--pri);font-weight:700;cursor:pointer}
+body.on-login .fabwrap{display:block}
+.fabwrap{display:none;position:fixed;right:12px;bottom:112px;z-index:9;align-items:center;gap:8px}
+.fabwrap .tip{background:#0d0f1c;border-radius:10px;padding:8px 12px;font-size:14px;color:#fff}
+.fabwrap .fab{position:static}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div class="logo" data-go="home">Prime<b>X</b><span>shop</span></div><div class="row" style="gap:14px;font-size:20px"><span title="খুঁজুন">🔍</span><span title="কার্ট">🛒</span><button class="hbal" id="hdrBal" data-go="add" hidden></button><button class="btn" id="authBtn" data-go="login">➜ Login</button></div></header>
+
+<!-- HOME -->
+<section class="page on" id="p-home">
+  <div class="banner"><div><h2>যেকোনো <em>সমস্যা</em></h2><h1>সমাধান করুন</h1><p>মাত্র ৩০ সেকেন্ডে ⏱️</p></div><div class="hero">🎮</div></div>
+  <div class="links">
+    <a href="#"><i style="background:#25d366">💬</i><span><small>CHAT</small>WhatsApp</span></a>
+    <a data-go="support"><i style="background:#2f8bff">🎧</i><span><small>HELP</small>Support</span></a>
+    <a href="#"><i style="background:#2aa3e6">✈️</i><span><small>JOIN</small>Telegram</span></a>
+  </div>
+  <div class="spinbar" id="spinOpen"><i>🎲</i><div><small>LUCKY SPIN WHEEL</small>A lucky spin wheel is live — log in to play!</div><b>➜</b></div>
+  <h3>FREE FIRE</h3>
+  <div class="grid" id="grid"></div>
+  <h3>PREMIUM CUSTOMER 👑</h3>
+  <div class="grid2"><div class="tile"><div class="img">👑</div><div>PREMIUM CUSTOMER</div></div><div class="tile"><div class="img">🎭</div><div>PREMIUM USER</div></div></div>
+  <h3>GAMING COOLER</h3>
+  <div class="grid2"><div class="tile"><div class="img">❄️</div><div>Cooler Fan</div></div></div>
+</section>
+
+<!-- LOGIN -->
+<section class="page" id="p-login">
+  <div class="lcard">
+    <div class="lband"></div>
+    <div class="licon">🔒</div>
+    <h2>Welcome back</h2>
+    <p class="lsub">আপনার ফোনে থাকা যেকোনো Gmail দিয়ে লগইন করুন</p>
+    <button class="gbtn" id="googleBtn">
+      <svg width="22" height="22" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+      <span>Google দিয়ে লগইন</span>
+    </button>
+    <div class="err" id="authErr" style="text-align:center;margin-top:12px"></div>
+    <div class="feat">
+      <div><span>⚡</span>Instant access</div>
+      <div><span>🔑</span>No password</div>
+      <div><span>🛡️</span>Secure sign-in</div>
+    </div>
+  </div>
+</section>
+
+<!-- ADD MONEY -->
+<section class="page" id="p-add">
+  <div class="amhead">
+    <button class="back" data-go="home" aria-label="ফিরে যান">←</button>
+    <div><h2>Add Money</h2><p>Top up your wallet instantly</p></div>
+  </div>
+
+  <div class="amcard">
+    <span class="wtag">Wallet Add Money</span>
+    <div class="lab">Current Balance</div>
+    <div class="bigbal" id="amBal">৳0</div>
+    <div class="hint">👛 Add funds to your wallet</div>
+  </div>
+
+  <div class="amcard">
+    <div class="sec-lbl">Payment Gateway</div>
+    <div class="gwtile" id="gwTile">
+      <span class="tick">✓</span>
+      <div class="gwlogo"><div class="mw"><span style="color:#e2136e">bKash</span><span style="color:#f7941d">Nagad</span><span style="color:#8c2a8f">Rocket</span></div><span>বাংলাদেশ পেমেন্ট</span></div>
+      <div class="gwfoot">Direct Pay<small>Instant</small></div>
+    </div>
+
+    <div class="sec-lbl" style="margin-top:22px;font-size:18px;color:var(--ink);text-transform:none;letter-spacing:0">Enter Amount</div>
+    <div class="amwrap"><span class="pre">৳</span><input id="amAmt" type="number" inputmode="numeric" min="10" max="25000" placeholder="0"></div>
+
+    <div class="chipsrow" id="amChips">
+      <button data-v="100">৳100</button><button data-v="500">৳500</button><button data-v="1000">৳1,000</button>
+      <button data-v="5000">৳5,000</button><button data-v="10000">৳10,000</button>
+    </div>
+
+    <div class="limits">ℹ️ Minimum deposit: <b>৳10</b> · Maximum: <b>৳25,000</b></div>
+    <div class="err" id="amErr" style="margin-top:8px"></div>
+    <button class="addbtn" id="amBtn">👛 Add ৳0</button>
+
+    <div class="trust"><span>🛡️ SSL Secured</span><span>🔒 256-bit Encrypted</span></div>
+    <div class="trust"><span>Powered by Direct Pay</span></div>
+  </div>
+
+  <div class="amcard" style="padding:0;overflow:hidden">
+    <div class="rtx-h" style="margin:0;padding:18px;border-bottom:1px solid var(--line)"><div class="ic">🕘</div><div><strong>Recent Transactions</strong><small>Your latest wallet top-up attempts</small></div></div>
+    <div style="padding:14px 18px 18px">
+      <div id="depList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- BUY -->
+<section class="page" id="p-buy">
+  <div class="amhead">
+    <button class="back" data-go="home" aria-label="ফিরে যান">←</button>
+    <div style="flex:1"></div>
+  </div>
+  <div class="bhead">
+    <div class="bicon" id="bIcon">💎</div>
+    <div><h2 id="buyTitle">UID TOPUP</h2><div class="bbadges"><span>IDCODE</span><span>⚡ Only 1-2 sec delivery</span></div></div>
+  </div>
+
+  <div class="sub-h"><div class="bic">🔋</div><h3>Select Recharge</h3></div>
+  <div class="pkgs" id="pkgs" style="margin-top:12px"></div>
+
+  <div class="qtyrow">
+    <div><div class="sub-h" style="margin:0"><div class="bic">▦</div><div><h3>Quantity</h3><small class="muted" id="qtyName"></small></div></div></div>
+    <div class="stepper"><button id="qDec" aria-label="কমান">−</button><span id="qVal">1</span><button id="qInc" aria-label="বাড়ান">+</button></div>
+  </div>
+
+  <div class="sub-h"><div class="bic">👤</div><h3>Account Info</h3></div>
+  <div class="sec-lbl" style="margin-top:12px">Player ID</div>
+  <input id="buyUid" inputmode="numeric" placeholder="আপনার Free Fire UID লিখুন">
+  <div class="err" id="uidErr"></div>
+  <div id="uidCard"></div>
+  <div class="sec-lbl" style="margin-top:16px">Recently Used</div>
+  <div class="recent" id="recent"></div>
+
+  <div class="sub-h"><div class="bic">🛒</div><h3>Purchase Details</h3></div>
+  <div class="sec-lbl" style="margin-top:12px">Payment Method</div>
+  <div class="pm2" id="pm2"></div>
+  <div class="summary" id="summary"></div>
+  <button class="paybtn" id="payBtn">প্যাকেজ বাছুন</button>
+
+  <div class="sub-h"><div class="bic">ℹ️</div><h3>Product Information</h3></div>
+  <div class="notes" style="margin-top:12px">
+    <div><i style="color:#ff4d3d">▲</i><span>অর্ডার করার আগে UID ও প্যাকেজ ভালোভাবে যাচাই করে নিন। ভুল UID-তে টপআপ হলে দায়িত্ব আপনার।</span></div>
+    <div><i>ⓘ</i><span>শুধুমাত্র বাংলাদেশের সার্ভারের আইডিতে টপআপ করা যাবে।</span></div>
+    <div><i style="color:#ff4d3d">▲</i><span>Player ID ভুল দিয়ে ডায়মন্ড না পেলে PrimeXshop কর্তৃপক্ষ দায়ী নয়।</span></div>
+    <div><i>ⓘ</i><span>কোনো কারণে ডায়মন্ড না পেলে Support-এ যোগাযোগ করুন।</span></div>
+    <div><i>ⓘ</i><span>সাধারণত ১–২ সেকেন্ডের মধ্যে ডেলিভারি হয়। সমস্যা হলে ২৪ ঘণ্টার মধ্যে জানান।</span></div>
+  </div>
+
+  <div class="sub-h"><div class="bic">🧩</div><h3>Related Product</h3></div>
+  <div class="rel" id="rel" style="margin-top:12px"></div>
+  <div class="buyspace"></div>
+</section>
+
+<!-- ORDERS -->
+<section class="page" id="p-orders">
+  <div class="ttl">আমার অর্ডার</div>
+  <div class="stack" id="orderList"></div>
+</section>
+
+<!-- PROFILE -->
+<section class="page" id="p-profile">
+  <div class="pf-hero">
+    <div class="pf-cover"></div>
+    <div class="pf-card">
+      <div class="pf-av" id="pfAv"></div>
+      <h2 id="pfName"></h2>
+      <div class="pf-badges"><span>● Active</span></div>
+      <div class="pf-mail" id="pfMail"></div><br>
+      <div class="pf-id">⧉ ID: <b id="pfId"></b></div>
+      <div class="pf-join" id="pfJoin"></div>
+    </div>
+  </div>
+
+  <div class="stat3">
+    <div class="stat"><div class="si">👛</div><div class="sv" id="sBal">৳0</div><div class="sl">Current Balance</div><div class="ss">Available</div></div>
+    <div class="stat"><div class="si">📈</div><div class="sv" id="sLife">৳0</div><div class="sl">Lifetime Usage</div><div class="ss">Total spent</div></div>
+    <div class="stat wide"><div class="si">🛍️</div><div class="sv" id="sOrd">0</div><div class="sl">Total Orders</div><div class="ss">All time</div></div>
+  </div>
+
+  <div class="panel bonus">
+    <h4>My Bonus &amp; Level</h4>
+    <div class="muted">The more you top up, the more you get!</div>
+    <div class="prog">
+      <div class="prow"><span>Progress to Next Level</span><b id="pPct">0%</b></div>
+      <div class="bar"><i id="pBar"></i></div>
+      <div class="prow"><span></span><span id="pTxt"></span></div>
+    </div>
+    <div class="tiers" id="tiers"></div>
+  </div>
+
+  <div class="panel">
+    <h4>Quick Actions</h4>
+    <div class="qa">
+      <a data-go="add"><span class="qi" style="background:#2f5bff">👛</span><div><small>Wallet</small><strong>Add Money</strong></div><span class="ar">↗</span></a>
+      <a data-go="add"><span class="qi" style="background:#2fb36b">📈</span><div><small>Ledger</small><strong>Transactions</strong></div><span class="ar">↗</span></a>
+      <a data-go="orders"><span class="qi" style="background:#2fb36b">🛍️</span><div><small>Orders</small><strong>My Orders</strong></div><span class="ar">↗</span></a>
+      <a data-toast="কোড ফিচার শীঘ্রই আসছে"><span class="qi" style="background:#7a5cff">&lt;/&gt;</span><div><small>Codes</small><strong>My Codes</strong></div><span class="ar">↗</span></a>
+      <a data-toast="রেফার ফিচার শীঘ্রই আসছে"><span class="qi" style="background:#f08a2e">🎁</span><div><small>Earn</small><strong>Refer &amp; Earn</strong></div><span class="ar">↗</span></a>
+      <a data-go="support"><span class="qi" style="background:#2f8bff">🎧</span><div><small>Help</small><strong>Support</strong></div><span class="ar">↗</span></a>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h4>Rewards</h4>
+    <div class="coinbox">
+      <div class="cl"><div class="coin">🪙</div><div><small>CURRENT COINS</small><b id="coinNum">0</b></div></div>
+      <span class="eq" id="coinEq">= ৳0.00</span>
+    </div>
+    <div class="rewgrid">
+      <div><small>BDT VALUE</small><strong id="bdtVal">৳0.00</strong></div>
+      <div><small>MIN. REDEEM</small><strong id="minRedeem">1,000 Coins</strong></div>
+    </div>
+    <div class="qa">
+      <a data-toast="রেফারেল ড্যাশবোর্ড শীঘ্রই আসছে"><span class="qi" style="background:#f08a2e">🎁</span><div><small>Earn</small><strong>Referral Dashboard</strong></div><span class="ar">↗</span></a>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h4>Recent Spins</h4>
+    <div id="spins"></div>
+  </div>
+
+  <div class="pf-cta">
+    <button class="btn" data-go="add">👛 Add Money</button>
+    <button class="btn ghost" data-toast="রেফার ফিচার শীঘ্রই আসছে">🎁 Refer &amp; Earn</button>
+  </div>
+
+    <div class="panel">
+      <h4>CUSTOMER SUPPORT</h4>
+      <div class="sup-list">
+        <a id="pTg" target="_blank" rel="noopener"><div class="hx" style="color:#2aabee">✈️</div><div><small>9AM - 11PM daily</small><strong>Telegram Support</strong></div></a>
+        <a id="pTc" target="_blank" rel="noopener"><div class="hx" style="color:#2aabee">✈️</div><div><small>Telegram Group</small><strong>Join Now</strong></div></a>
+        <a id="pWa" target="_blank" rel="noopener"><div class="hx" style="color:#25d366">💬</div><div><small>24/7 Available</small><strong>WhatsApp Support</strong></div></a>
+      </div>
+    </div>
+    <div class="panel infolist">
+      <h4>INFORMATION</h4>
+      <a href="#">Terms &amp; Conditions</a><a href="#">Privacy Policy</a><a href="#">Shipping Information</a><a href="#">Refund &amp; Returns</a><a href="#">Contact Us</a><a href="#">About Us</a>
+    </div>
+    <div class="foot">
+      <div style="font-weight:800;letter-spacing:1px;color:var(--text)">STAY CONNECTED</div>
+      <div class="fc">
+        <strong>PrimeXshop</strong>
+        <div class="muted" style="margin-top:8px">EMAIL: <span id="pEmailFoot" style="color:var(--text);word-break:break-all"></span></div>
+        <div class="follow" style="margin-top:14px"><a id="pFb" target="_blank" rel="noopener">Facebook</a><a id="pYt" target="_blank" rel="noopener">YouTube</a></div>
+      </div>
+      <p style="margin-top:20px">© 2026 PrimeXshop. All Rights Reserved.</p>
+    </div>
+</section>
+
+<!-- SUPPORT -->
+<section class="page" id="p-support">
+  <div class="cu">
+    <div class="cu-top">
+      <div class="cu-ic">🎧</div>
+      <div><h2>Contact Us</h2><div class="uline"></div><p>আমরা সবসময় সাহায্যের জন্য আছি। একটা প্ল্যাটফর্ম বেছে নিন, সাপোর্ট টিকেট খুলুন, বা আমাদের ঘোষণা দেখুন।</p></div>
+    </div>
+    <div class="badges">
+      <span>Support Center</span>
+      <span><i class="dotg"></i><b>Online</b></span>
+      <span>🕘 <b>9 AM–11 PM</b></span>
+      <span>Avg response <b>&lt; 5 mins</b></span>
+    </div>
+  </div>
+
+  <div class="ccards">
+    <a class="ccard" id="cWa" target="_blank" rel="noopener"><div class="ci" style="color:#25d366">💬</div><h3>WhatsApp Support</h3><p>Direct chat with team</p><span class="cl">Chat Now ›</span></a>
+    <a class="ccard" id="cTg" target="_blank" rel="noopener"><div class="ci" style="color:#2aabee">✈️</div><h3>Telegram Support</h3><p>Instant ticket solving</p><span class="cl">Chat Now ›</span></a>
+    <a class="ccard full" id="cTc" target="_blank" rel="noopener"><div class="ci" style="color:#2aabee">✈️</div><h3>Telegram Channel</h3><p>Get latest updates</p><span class="cl">Join Now ›</span></a>
+  </div>
+
+  <div class="stabs" id="stabs">
+    <button class="on" data-tab="ticket">🎧<br>Submit Ticket</button>
+    <button data-tab="report">🐞<br>Report Issue</button>
+    <button data-tab="history">🧾<br>Track History</button>
+  </div>
+  <div class="tbox" id="tbox"></div>
+
+  <div class="panel">
+    <h4><span>❓</span>Frequently Asked Questions</h4>
+    <div class="muted" style="margin:-8px 0 4px">Quick answers to common questions</div>
+    <details class="faq"><summary><span class="n">01</span>ওয়ালেট টপআপ করতে কতক্ষণ সময় লাগে?</summary><div class="ans">সাধারণত কয়েক মিনিটের মধ্যে ব্যালেন্সে যোগ হয়। Transaction ID যাচাই হতে বেশি সময় লাগলে Submit Ticket থেকে জানান।</div></details>
+    <details class="faq"><summary><span class="n">02</span>কয়েন রিওয়ার্ড কনভার্শন রেট কত?</summary><div class="ans">কনভার্শন রেট নির্ভর করে বর্তমান প্যাকেজ ও অফারের উপর। সর্বশেষ রেট জানতে Telegram Support-এ জিজ্ঞাসা করুন।</div></details>
+    <details class="faq"><summary><span class="n">03</span>বোনাস কয়েনের জন্য ভিডিও লিংক কিভাবে জমা দেব?</summary><div class="ans">Submit Ticket ট্যাবে গিয়ে বিষয় হিসেবে "বোনাস" বেছে নিন এবং ভিডিওর লিংক লিখে পাঠান।</div></details>
+    <details class="faq"><summary><span class="n">04</span>পেমেন্ট ব্যর্থ হয়েছে কিন্তু টাকা কেটে নিয়েছে — কী করব?</summary><div class="ans">Transaction ID ও পেমেন্টের স্ক্রিনশট সহ Report Issue ট্যাবে টিকেট খুলুন। যাচাই শেষে ব্যালেন্সে যোগ বা ফেরত দেওয়া হবে।</div></details>
+  </div>
+
+  <div class="panel">
+    <h4>🏢 BUSINESS DETAILS</h4>
+    <div class="biz"><div class="bi">🎧</div><div><small>Brand Name</small><strong>PrimeXshop</strong></div></div>
+    <div class="biz"><div class="bi">✉️</div><div><small>Support Email</small><strong id="supEmail"></strong><button class="copy" id="copyEmail" aria-label="কপি">⧉</button></div></div>
+    <div class="biz"><div class="bi">🕘</div><div><small>Support Availability</small><strong>9:00 AM – 11:00 PM</strong><div class="muted">প্রতিদিন (ছুটির দিনসহ)</div></div></div>
+  </div>
+
+  <div class="panel">
+    <h4>FOLLOW US</h4>
+    <div class="follow"><a id="fbLink" target="_blank" rel="noopener">Facebook</a><a id="ytLink" target="_blank" rel="noopener">YouTube</a></div>
+  </div>
+
+  <div class="panel">
+    <h4>📣 RECENT ANNOUNCEMENTS</h4>
+    <div id="annList"></div>
+  </div>
+
+  <div class="panel">
+    <h4>CUSTOMER SUPPORT</h4>
+    <div class="sup-list">
+      <a id="sTg" target="_blank" rel="noopener"><div class="hx" style="color:#2aabee">✈️</div><div><small>9AM - 11PM daily</small><strong>Telegram Support</strong></div></a>
+      <a id="sTc" target="_blank" rel="noopener"><div class="hx" style="color:#2aabee">✈️</div><div><small>Telegram Group</small><strong>Join Now</strong></div></a>
+      <a id="sWa" target="_blank" rel="noopener"><div class="hx" style="color:#25d366">💬</div><div><small>24/7 Available</small><strong>WhatsApp Support</strong></div></a>
+    </div>
+  </div>
+
+  <div class="panel infolist">
+    <h4>INFORMATION</h4>
+    <a href="#">Terms &amp; Conditions</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Shipping Information</a>
+    <a href="#">Refund &amp; Returns</a>
+    <a href="#">Contact Us</a>
+    <a href="#">About Us</a>
+  </div>
+
+  <div class="foot">
+    <div style="font-weight:800;letter-spacing:1px;color:var(--text)">STAY CONNECTED</div>
+    <div class="fc">
+      <strong>PrimeXshop</strong>
+      <div class="muted" style="margin-top:8px">EMAIL: <span id="footEmail" style="color:var(--text);word-break:break-all"></span></div>
+      <div class="follow" style="margin-top:14px"><a id="fbLink2" target="_blank" rel="noopener">Facebook</a><a id="ytLink2" target="_blank" rel="noopener">YouTube</a></div>
+    </div>
+    <p style="margin-top:20px">© 2026 PrimeXshop. All Rights Reserved.</p>
+  </div>
+</section>
+</div>
+
+<nav id="nav">
+  <a data-go="home"><i>🏠</i>Home</a>
+  <a data-go="orders"><i>🧾</i>Orders</a>
+  <a data-go="add" class="add"><u>💳</u>ADD MONEY</a>
+  <a data-go="support"><i>🎧</i>Support</a>
+  <a data-go="profile"><i>👤</i>Profile</a>
+</nav>
+
+<div class="fabwrap"><span class="tip">Need Help?</span><button class="fab" data-go="support" aria-label="সাপোর্ট">🎧</button></div>
+
+<!-- SPIN MODAL -->
+<div class="modal" id="sp" style="align-items:center"><div class="spin">
+  <button class="x" id="spClose">✕</button>
+  <div class="chip">🎲 SPIN &amp; WIN</div><h4>লাকি স্পিন</h4>
+  <div class="wheel" id="wh"><div class="hub">🎲</div></div>
+  <button class="spbtn" id="spBtn">🎲 LOG IN TO SPIN</button>
+  <div class="note">Please log in first to spin.</div>
+</div></div>
+
+<div class="stickyadd" id="stickyAdd"><div class="wrapin"><button id="amBtn2">👛 Add ৳0</button></div></div>
+<div class="buybar" id="buybar"><div class="in"><div><small>SELECTED</small><strong id="selName">প্যাকেজ বাছুন</strong><b id="selPrice">৳0</b></div><button id="buyNow">Buy Now</button></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== কনফিগ: এখানে আপনার তথ্য বসান =====
+const CONFIG = {
+  // Backend-এর পূর্ণ ঠিকানা, যেমন https://api.primexshop.com (Render/Railway/Vercel-এ চালানো)
+  // খালি থাকলে UID যাচাই, অর্ডার আর ব্যালেন্স জমা শুধু ডেমো মোডে চলবে।
+  API_BASE: "",
+  // নিরাপত্তার জন্য রিসেলার API key কখনো এখানে বসাবেন না — এটা সার্ভারে (backend) রাখতে হবে
+  ORDER_ENDPOINT: "/api/order",   // আপনার ব্যাকএন্ড URL
+  DEPOSIT_ENDPOINT: "/api/deposit", // পেমেন্ট গেটওয়ে শুরু করার ব্যাকএন্ড URL
+  VERIFY_ENDPOINT: "/api/verify-uid", // UID যাচাই: ব্যাকএন্ড প্লেয়ারের নাম, লেভেল, লাইক ফেরত দেবে
+  // Google OAuth Client ID (Google Cloud Console থেকে নিন). খালি রাখলে ডেমো মোড চলবে।
+  GOOGLE_CLIENT_ID: "",
+  // Support links (নিজের লিংক বসান)
+  SUPPORT_EMAIL: "support@primexshop.com",
+  WHATSAPP_URL: "https://wa.me/8801700000000",
+  TELEGRAM_URL: "https://t.me/primexshop_support",
+  TELEGRAM_CHANNEL_URL: "https://t.me/primexshop",
+  FACEBOOK_URL: "https://facebook.com/primexshop",
+  YOUTUBE_URL: "https://youtube.com/@primexshop",
+  // Announcements: [{title, date}] — খালি থাকলে "কোনো ঘোষণা নেই" দেখাবে
+  ANNOUNCEMENTS: [],
+  // Coin rewards: প্রতি কয়েনের মূল্য (৳) ও ন্যূনতম রিডিম
+  COIN_TO_TAKA: 0.01,
+  MIN_REDEEM: 1000,
+};
+// প্যাকেজ ও দাম (নিজের দাম অনুযায়ী বদলান; "code" = রিসেলার API-র প্যাকেজ আইডি)
+const PACKS = [
+  {code:"d25",  name:"25 💎",   price:22},
+  {code:"d50",  name:"50 💎",   price:42},
+  {code:"d115", name:"115 💎",  price:82},
+  {code:"d240", name:"240 💎",  price:165},
+  {code:"d610", name:"610 💎",  price:410},
+  {code:"d1240",name:"1240 💎", price:820},
+];
+const TILES = [["💎","UID TOPUP"],["📅","WEEKLY"],["🗓️","MONTHLY"],["📦","WEEKLY + Monthly"],["🎫","Weekly Lite"],["⬆️","Level Up Packages"],["🇮🇩","Indonesia Topup"],["👍","Free Fire - 100 Like প্রতিদিন"]];
+const PAYS = ["bKash","Nagad","Rocket"];
+
+/* DEMO ONLY: accounts, wallet and orders live in this browser's localStorage.
+   Passwords are not hashed here. Before launch move all of this to a real backend
+   with email verification and hashed passwords. */
+const KU="px_users", KS="px_session";
+const store={
+  get users(){try{return JSON.parse(localStorage.getItem(KU))||{}}catch(e){return{}}},
+  set users(v){try{localStorage.setItem(KU,JSON.stringify(v))}catch(e){}},
+  get session(){try{return localStorage.getItem(KS)}catch(e){return null}},
+  set session(v){try{v?localStorage.setItem(KS,v):localStorage.removeItem(KS)}catch(e){}}
+};
+const $=id=>document.getElementById(id);
+const bn=n=>String(n).replace(/\d/g,d=>"০১২৩৪৫৬৭৮৯"[d]);
+const money=n=>"৳"+bn(Number(n||0));
+const enc=s=>btoa(unescape(encodeURIComponent(s)));
+const me=()=>{const e=store.session;const u=e&&store.users[e];return u?{email:e,...u}:null};
+function saveMe(patch){const all=store.users,e=store.session;all[e]={...all[e],...patch};store.users=all}
+function toast(t){const el=$("toast");el.textContent=t;el.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("on"),2200)}
+const validEmail=s=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+
+// ===== Routing (plain #name hashes) =====
+const PAGES=["home","login","add","buy","orders","profile","support"];
+const PROTECTED=["add","buy","orders","profile"];
+function route(){
+  let p=location.hash.slice(1)||"home";
+  if(!PAGES.includes(p))p="home";
+  if(PROTECTED.includes(p)&&!me()){location.hash="login";return}
+  document.querySelectorAll(".page").forEach(s=>s.classList.toggle("on",s.id==="p-"+p));
+  document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("on",a.dataset.go===p));
+  $("nav").hidden=(p==="login");
+  document.body.classList.toggle("on-login",p==="login");
+  window.scrollTo(0,0);
+  renderPage(p);
+}
+function renderPage(p){
+  const u=me();
+  $("authBtn").textContent=u?"👤 "+u.name:"➜ Login";
+  $("hdrBal").hidden=!u;
+  if(u)$("hdrBal").textContent="👛 "+money(u.balance);
+  $("authBtn").dataset.go=u?"profile":"login";
+  $("buybar").classList.toggle("on",p==="buy");
+  if(p==="buy")renderBuy();
+  if(p==="support"){fillSupportLinks();renderSupportTab()}
+  $("stickyAdd").classList.toggle("on",p==="add");
+  if(p==="add")renderDeposits();
+  if(p==="orders")renderOrders();
+  if(p==="profile")renderProfile();
+}
+window.addEventListener("hashchange",route);
+document.addEventListener("click",e=>{const g=e.target.closest("[data-go]");if(g){location.hash=g.dataset.go}});
+
+// ===== Login (Supabase + Google) =====
+// Supabase-এ Google provider চালু থাকলে Google account chooser খুলবে।
+const sb=(CONFIG.SUPABASE_URL&&window.supabase)?window.supabase.createClient(CONFIG.SUPABASE_URL,CONFIG.SUPABASE_ANON_KEY,{auth:{flowType:"pkce"}}):null;
+const loginErr=t=>{$("authErr").textContent=t};
+function ensureLocal(email,name,picture){
+  const all=store.users;
+  if(!all[email])all[email]={name:name||email.split("@")[0],balance:0,orders:[],deposits:[],tickets:[],coins:0,spins:[],joined:Date.now(),picture:picture||""};
+  else{
+    if(name&&(!all[email].name||all[email].name===email.split("@")[0]))all[email].name=name;
+    if(picture)all[email].picture=picture;
+  }
+  store.users=all;
+}
+function signInUser(email,name,picture){ensureLocal(email,name,picture);store.session=email;toast("লগইন সফল হয়েছে");location.hash="home"}
+function adoptSession(session){
+  const su=session&&session.user;if(!su)return false;
+  const m=su.user_metadata||{};
+  const email=(su.email||"").toLowerCase();if(!email)return false;
+  ensureLocal(email,m.full_name||m.name||"",m.avatar_url||m.picture||"");
+  store.session=email;
+  return true;
+}
+$("googleBtn").onclick=async()=>{
+  if(!sb){
+    // ডেমো মোড: Supabase সংযুক্ত না থাকলে ইমেইল লিখে ঢুকবে
+    const email=(prompt("ডেমো: আপনার Google ইমেইল লিখুন")||"").trim().toLowerCase();
+    if(!validEmail(email))return loginErr("সঠিক ইমেইল লিখুন");
+    const name=(prompt("আপনার নাম")||"").trim();
+    return signInUser(email,name,"");
+  }
+  const {error}=await sb.auth.signInWithOAuth({provider:"google",options:{redirectTo:location.origin+location.pathname}});
+  if(error)loginErr("Google লগইন শুরু হয়নি: "+error.message);
+};
+if(sb){
+  sb.auth.onAuthStateChange((event,session)=>{
+    if(event==="SIGNED_IN"&&adoptSession(session)){toast("লগইন সফল হয়েছে");location.hash="home";route()}
+  });
+  sb.auth.getSession().then(({data})=>{if(data.session&&adoptSession(data.session))route()});
+}
+$("logout").onclick=async()=>{
+  if(sb)await sb.auth.signOut();
+  store.session=null;toast("লগআউট হয়েছে");location.hash="home";
+};
+
+// ===== Add money =====
+let depMin=10,depMax=25000;
+function amountVal(){return Number($("amAmt").value)||0}
+function validateAmount(){
+  const a=amountVal();
+  let err="";
+  if(a&&a<depMin)err="ন্যূনতম ৳"+bn(depMin)+" যোগ করুন";
+  else if(a>depMax)err="সর্বোচ্চ ৳"+bn(depMax)+" পর্যন্ত যোগ করা যাবে";
+  $("amErr").textContent=err;
+  const ready=a>=depMin&&a<=depMax;
+  [$("amBtn"),$("amBtn2")].forEach(b=>{b.textContent="👛 Add "+money(a);b.classList.toggle("ready",ready)});
+  [...$("amChips").children].forEach(c=>c.classList.toggle("on",Number(c.dataset.v)===a));
+}
+$("amAmt").addEventListener("input",validateAmount);
+$("amChips").onclick=e=>{const b=e.target.closest("[data-v]");if(!b)return;$("amAmt").value=b.dataset.v;validateAmount()};
+async function submitDeposit(){
+  const a=amountVal();
+  if(a<depMin||a>depMax)return toast("সঠিক পরিমাণ লিখুন");
+  const u=me();if(!u){location.hash="login";return}
+  if(CONFIG.API_BASE){
+    try{
+      const r=await fetch(CONFIG.API_BASE+CONFIG.DEPOSIT_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({amount:a,gateway:"direct_pay"})});
+      const d=await r.json().catch(()=>({}));
+      if(!r.ok||d.error)return toast(d.error||"পেমেন্ট শুরু হয়নি");
+      if(d.payment_url){location.href=d.payment_url;return}
+    }catch(e){return toast("সার্ভারে যোগাযোগ করা যাচ্ছে না")}
+  }
+  saveMe({deposits:[{method:"Direct Pay",amt:a,status:"wait",at:Date.now()},...(u.deposits||[])]});
+  toast(CONFIG.API_BASE?"জমা হয়েছে, যাচাই চলছে":"ডেমো: জমা রেকর্ড হয়েছে, যাচাই চলছে");
+  renderDeposits();
+}
+$("amBtn").onclick=submitDeposit;
+$("amBtn2").onclick=submitDeposit;
+function renderDeposits(){
+  const u=me();if(!u)return;
+  $("amBal").textContent=money(u.balance);
+  validateAmount();
+  const list=u.deposits||[];
+  $("depList").innerHTML=list.length?list.map(d=>`<div class="card row" style="margin-bottom:8px"><div><strong>${money(d.amt)}</strong><div class="muted">${d.method} · ${new Date(d.at).toLocaleDateString("bn-BD")}</div></div><span class="pill ${d.status==="ok"?"ok":"wait"}">${d.status==="ok"?"যোগ হয়েছে":"যাচাই চলছে"}</span></div>`).join(""):`<div class="rtx-empty"><div class="ic">🕘</div><strong>No wallet deposits yet</strong>Your add-money history will appear here</div>`;
+}
+
+// ===== Profile =====
+const TIERS=[{n:"Bronze",t:2000,i:"🥉"},{n:"Silver",t:3000,i:"🥈"},{n:"Gold",t:5000,i:"🥇"}];
+function profileId(email){let h=0;for(const c of email)h=(h*31+c.charCodeAt(0))%90000;return String(10000+h)}
+function renderProfile(){
+  const u=me();if(!u)return;
+  const orders=u.orders||[];
+  const life=orders.reduce((a,o)=>a+Number(o.price||0),0);
+  const d=new Date(u.joined||Date.now());
+  $("pfName").textContent=u.name;
+  $("pfMail").textContent=u.email;
+  $("pfId").textContent=profileId(u.email);
+  $("pfJoin").textContent="Joined "+d.toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"})+" at "+d.toLocaleTimeString("en-US");
+  const av=$("pfAv");
+  if(u.picture){av.style.backgroundImage="url("+u.picture+")";av.textContent=""}
+  else{av.style.backgroundImage="none";av.textContent=(u.name||"?").trim().charAt(0).toUpperCase()}
+  $("sBal").textContent=money(u.balance);
+  $("sLife").textContent=money(life);
+  $("sOrd").textContent=bn(orders.length);
+  const lvl=TIERS.filter(t=>life>=t.t).length;
+  const next=TIERS[lvl];
+  const pct=next?Math.min(100,Math.round(life/next.t*100)):100;
+  $("pPct").textContent=bn(pct)+"%";
+  $("pBar").style.width=pct+"%";
+  $("pTxt").textContent=next?money(life)+" / "+money(next.t):"সর্বোচ্চ লেভেলে পৌঁছেছেন";
+  $("tiers").innerHTML=TIERS.map((t,i)=>{const open=life>=t.t;return `<div class="tier ${open?"":"locked"}"><span class="lk">${open?"":"🔒"}</span><div class="lv">Lv. ${i+1}</div><div class="tm">${t.i}</div><div class="tn">${t.n}</div><div class="tt">${money(t.t)}</div></div>`}).join("");
+  const coins=Number(u.coins||0);
+  $("coinNum").textContent=bn(coins);
+  $("coinEq").textContent="= "+money((coins*CONFIG.COIN_TO_TAKA).toFixed(2));
+  $("bdtVal").textContent=money((coins*CONFIG.COIN_TO_TAKA).toFixed(2));
+  $("minRedeem").textContent=bn(CONFIG.MIN_REDEEM)+" Coins";
+  const sp=u.spins||[];
+  $("spins").innerHTML=sp.length?sp.map(x=>`<div class="card row" style="margin-top:8px"><strong>${x.prize}</strong><span class="muted">${new Date(x.at).toLocaleDateString("en-US")}</span></div>`).join(""):`<div class="spinempty">No spins yet. Try the lucky wheel on the home page.</div>`;
+  const set=(id,v)=>{const el=$(id);if(el)el.href=v};
+  set("pWa",CONFIG.WHATSAPP_URL);set("pTg",CONFIG.TELEGRAM_URL);set("pTc",CONFIG.TELEGRAM_CHANNEL_URL);
+  set("pFb",CONFIG.FACEBOOK_URL);set("pYt",CONFIG.YOUTUBE_URL);
+  $("pEmailFoot").textContent=CONFIG.SUPPORT_EMAIL;
+}
+document.addEventListener("click",e=>{const t=e.target.closest("[data-toast]");if(t)toast(t.dataset.toast)});
+
+// ===== Orders =====
+function renderOrders(){
+  const u=me();if(!u)return;
+  $("orderList").innerHTML=u.orders.length?u.orders.map(o=>`<div class="card row"><div><strong>${o.pack}</strong><div class="muted">${o.player?esc(o.player)+" · ":""}UID ${bn(o.uid)} · ${money(o.price)}</div></div><span class="pill ${o.status==="done"?"ok":"wait"}">${o.status==="done"?"সম্পন্ন":"প্রক্রিয়াধীন"}</span></div>`).join(""):`<div class="muted">এখনো কোনো অর্ডার নেই</div>`;
+}
+
+// ===== Support page =====
+let supTab="ticket";
+const TOPICS=["টপআপ হয়নি","পেমেন্ট সমস্যা","বোনাস","অন্যান্য"];
+function fillSupportLinks(){
+  const set=(id,href)=>{const el=$(id);if(el)el.href=href};
+  set("cWa",CONFIG.WHATSAPP_URL);set("sWa",CONFIG.WHATSAPP_URL);
+  set("cTg",CONFIG.TELEGRAM_URL);set("sTg",CONFIG.TELEGRAM_URL);
+  set("cTc",CONFIG.TELEGRAM_CHANNEL_URL);set("sTc",CONFIG.TELEGRAM_CHANNEL_URL);
+  set("fbLink",CONFIG.FACEBOOK_URL);set("fbLink2",CONFIG.FACEBOOK_URL);
+  set("ytLink",CONFIG.YOUTUBE_URL);set("ytLink2",CONFIG.YOUTUBE_URL);
+  $("supEmail").textContent=CONFIG.SUPPORT_EMAIL;
+  $("footEmail").textContent=CONFIG.SUPPORT_EMAIL;
+  {const anns=readSettings().announcements||CONFIG.ANNOUNCEMENTS;$("annList").innerHTML=anns.length?anns.map(a=>`<div class="card" style="margin-top:10px"><strong>${a.title}</strong><div class="muted">${a.date||""}</div></div>`).join(""):`<div class="empty">এখনো কোনো ঘোষণা নেই</div>`;}
+}
+$("copyEmail").onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText(CONFIG.SUPPORT_EMAIL);toast("ইমেইল কপি হয়েছে")};
+$("stabs").onclick=e=>{const b=e.target.closest("[data-tab]");if(!b)return;supTab=b.dataset.tab;[...$("stabs").children].forEach(x=>x.classList.toggle("on",x===b));renderSupportTab()};
+function renderSupportTab(){
+  const u=me(),box=$("tbox");
+  if(!u){
+    box.innerHTML=`<div class="tic">🎧</div><h4>লগইন প্রয়োজন</h4><p>সাপোর্ট টিকেট জমা দিতে অনুগ্রহ করে লগইন করুন। আপনার নাম ও ইমেইল স্বয়ংক্রিয়ভাবে পূরণ হবে।</p><button class="btn" data-go="login">লগইন করুন</button>`;
+    return;
+  }
+  if(supTab==="history"){
+    const list=u.tickets||[];
+    box.innerHTML=`<div class="tic">🧾</div><h4>আপনার টিকেট</h4><div class="hist" style="margin-top:12px">${list.length?list.map(t=>`<div class="card row"><div><strong>${t.topic}</strong><div class="muted">${t.msg.slice(0,60)}</div></div><span class="pill wait">খোলা</span></div>`).join(""):`<div class="empty">এখনো কোনো টিকেট নেই</div>`}</div>`;
+    return;
+  }
+  const isReport=supTab==="report";
+  box.innerHTML=`<div class="tic">${isReport?"🐞":"🎧"}</div><h4>${isReport?"সমস্যা রিপোর্ট করুন":"সাপোর্ট টিকেট জমা দিন"}</h4>
+  <div class="tform">
+    <label>নাম</label><input value="${u.name}" readonly>
+    <label>ইমেইল</label><input value="${u.email}" readonly>
+    <label>বিষয়</label><select id="tTopic">${TOPICS.map(t=>`<option>${t}</option>`).join("")}</select>
+    <label>বিস্তারিত</label><textarea id="tMsg" rows="4" placeholder="সমস্যাটি লিখুন"></textarea>
+    <div class="err" id="tErr"></div>
+    <button class="btn" id="tSend">পাঠান</button>
+  </div>`;
+  $("tSend").onclick=()=>{
+    const msg=$("tMsg").value.trim();
+    if(msg.length<5)return $("tErr").textContent="একটু বিস্তারিত লিখুন";
+    const cu=me();
+    saveMe({tickets:[{topic:$("tTopic").value,msg,status:"open",at:Date.now()},...(cu.tickets||[])]});
+    toast("টিকেট পাঠানো হয়েছে");
+    supTab="history";[...$("stabs").children].forEach(x=>x.classList.toggle("on",x.dataset.tab==="history"));
+    renderSupportTab();
+  };
+}
+
+// ===== Home grid =====
+let currentCat="UID TOPUP";
+$("grid").innerHTML=TILES.map(t=>`<div class="tile" data-tile="${t[1]}"><div class="img">${t[0]}</div><div>${t[1]}</div></div>`).join("");
+$("grid").onclick=e=>{const t=e.target.closest("[data-tile]");if(!t)return;currentCat=t.dataset.tile;location.hash="buy"};
+
+// ===== Buy page =====
+const DIAMOND_PACKS=[[25,22],[50,36],[100,70],[115,79],[240,158],[355,237],[480,316],[505,336],[610,400],[850,558],[1090,715],[1240,800],[1720,1116],[2090,1358],[2530,1600],[4010,2568],[5060,3200],[10120,6300]].map(([d,p])=>({code:"d"+d,name:d+" Diamond",price:p}));
+const CATS={
+  "UID TOPUP":{title:"UID TOPUP",icon:"💎",packs:[{code:"weekly",name:"Weekly",price:155},{code:"monthly",name:"Monthly",price:770},...DIAMOND_PACKS,{code:"2weekly",name:"2x Weekly",price:316},{code:"3weekly",name:"3x Weekly",price:474},{code:"4weekly",name:"4x Weekly",price:632}]},
+  "WEEKLY":{title:"Weekly",icon:"📅",packs:[{code:"weekly",name:"Weekly Pass",price:155}]},
+  "MONTHLY":{title:"Monthly",icon:"🗓️",packs:[{code:"monthly",name:"Monthly Pass",price:770}]},
+  "WEEKLY + Monthly":{title:"Weekly + Monthly",icon:"📦",packs:[{code:"combo",name:"Combo Pack",price:460}]},
+  "Weekly Lite":{title:"Weekly Lite",icon:"🎟️",packs:[{code:"wlite",name:"Weekly Lite",price:60}]},
+  "Level Up Packages":{title:"Level Up Packages",icon:"⬆️",packs:[{code:"levelup",name:"Level Up Pack",price:150}]},
+  "Indonesia Topup":{title:"Indonesia Topup",icon:"🇮🇩",packs:[{code:"indo",name:"Indonesia 100",price:95}]},
+  "Free Fire - 100 Like প্রতিদিন":{title:"Free Fire - 100 Like",icon:"👍",packs:[{code:"like",name:"100 Like",price:0}]}
+};
+// Admin panel-এর সেটিংস (একই ব্রাউজারে admin.html থেকে বদলানো হয়)
+function readSettings(){try{return JSON.parse(localStorage.getItem("px_settings"))||{}}catch(e){return{}}}
+(function applyAdminPrices(){
+  const pr=readSettings().prices||{};
+  Object.values(CATS).forEach(c=>c.packs.forEach(p=>{if(pr[p.code]!==undefined)p.price=Number(pr[p.code])}));
+})();
+const REL_KEYS=["Level Up Packages","Indonesia Topup","Free Fire - 100 Like প্রতিদিন"];
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const TK=n=>n+" TK";
+let selCatKey=null,selPack=null,qty=1,payMethod="direct",verified=null,verifying=false,verifyTok=0,verifyTimer=null;
+const total=()=>selPack?selPack.price*qty:0;
+
+function renderBuy(){
+  const c=CATS[currentCat]||CATS["UID TOPUP"];
+  $("buyTitle").textContent=c.title;
+  $("bIcon").textContent=c.icon;
+  if(selCatKey!==currentCat){selCatKey=currentCat;selPack=c.packs.length===1?c.packs[0]:null;qty=1}
+  $("pkgs").innerHTML=c.packs.map((p,i)=>`<button class="pkg ${selPack&&selPack.code===p.code?"on":""}" data-i="${i}"><span class="pn">${esc(p.name)}</span><b>${TK(p.price)}</b><span class="ck2">✓</span></button>`).join("");
+  $("qVal").textContent=qty;
+  $("qtyName").textContent=selPack?selPack.name:"";
+  $("rel").innerHTML=REL_KEYS.map(k=>{const t=TILES.find(x=>x[1]===k);return `<div class="relc" data-cat="${k}"><div class="rimg">${t[0]}</div>${esc(k)}</div>`}).join("");
+  renderPM();renderRecent();renderUid();refresh();
+}
+function refresh(){renderSummary();renderBar()}
+$("pkgs").onclick=e=>{const b=e.target.closest("[data-i]");if(!b)return;selPack=CATS[currentCat].packs[b.dataset.i];qty=1;renderBuy()};
+$("qDec").onclick=()=>{if(qty>1){qty--;renderBuy()}};
+$("qInc").onclick=()=>{if(qty<10){qty++;renderBuy()}};
+$("rel").onclick=e=>{const c=e.target.closest("[data-cat]");if(!c)return;currentCat=c.dataset.cat;renderBuy();window.scrollTo(0,0)};
+
+function renderPM(){
+  const u=me();
+  $("pm2").innerHTML=`<div class="pmx ${payMethod==="wallet"?"on":""}" data-m="wallet"><span class="ck">✓</span><div class="top wal">👛 XFIRE<br>SHOP</div><div class="lbl">Wallet Balance<small>${money(u?u.balance:0)}</small></div></div>
+  <div class="pmx ${payMethod==="direct"?"on":""}" data-m="direct"><span class="ck">✓</span><div class="top dp"><span style="color:#e2136e">bKash</span>&nbsp;<span style="color:#f7941d">Nagad</span>&nbsp;<span style="color:#8c2a8f">Rocket</span></div><div class="lbl" style="color:#5b86ff">Direct Pay<small>Instant</small></div></div>`;
+}
+$("pm2").onclick=e=>{const b=e.target.closest("[data-m]");if(!b)return;payMethod=b.dataset.m;renderPM();refresh()};
+
+function renderRecent(){
+  const u=me();const list=(u&&u.recentUids)||[];
+  $("recent").innerHTML=list.length?list.map(x=>`<button class="rchip" data-uid="${esc(x)}">⧉ ${esc(x)}</button>`).join(""):`<span class="muted">এখনো কোনো UID নেই</span>`;
+}
+$("recent").onclick=e=>{const b=e.target.closest("[data-uid]");if(!b)return;$("buyUid").value=b.dataset.uid;$("buyUid").dispatchEvent(new Event("input"))};
+
+function renderUid(){
+  const box=$("uidCard");
+  if(verifying){box.innerHTML=`<div class="uidcard"><div class="uava">⏳</div><div class="uinfo"><strong>যাচাই হচ্ছে...</strong><div class="muted">একটু অপেক্ষা করুন</div></div></div>`;return}
+  if(!verified){box.innerHTML="";return}
+  box.innerHTML=`<div class="uidcard"><div class="uava">🎮</div><div class="uinfo"><strong>${esc(verified.name)}</strong><span class="ubadge">${esc(verified.region)}</span><div class="muted">ID: ${esc(verified.uid)}</div><div class="muted">Likes: ${esc(verified.likes)} · Level: ${esc(verified.level)}</div>${verified.demo?'<div class="demo">ডেমো মোড: আসল নাম দেখাতে backend (API_BASE) যুক্ত করুন</div>':""}</div><span class="uck">✓</span></div>`;
+}
+$("buyUid").addEventListener("input",()=>{
+  const v=$("buyUid").value.trim();
+  verified=null;verifying=false;clearTimeout(verifyTimer);$("uidErr").textContent="";
+  if(/^\d{6,12}$/.test(v)){verifyTimer=setTimeout(()=>verifyUid(v),450)}
+  else if(v.length)$("uidErr").textContent=/^\d+$/.test(v)?"UID কমপক্ষে ৬ সংখ্যার হতে হবে":"শুধু সংখ্যা লিখুন";
+  renderUid();refresh();
+});
+async function verifyUid(uid){
+  const tok=++verifyTok;verifying=true;renderUid();
+  let res;
+  if(!CONFIG.API_BASE){
+    // backend নেই: আসল নাম আনা সম্ভব নয়, তাই স্পষ্টভাবে জানানো হবে
+    res={uid,name:"নাম দেখানো যাচ্ছে না",level:"—",likes:"—",region:"BD",demo:true};
+  }else{
+    try{
+      const r=await fetch(CONFIG.API_BASE+CONFIG.VERIFY_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({uid})});
+      const d=await r.json().catch(()=>({}));
+      if(r.ok&&d.name)res={uid,name:d.name,level:d.level||"—",likes:d.likes||"—",region:d.region||"BD"};
+      else res={error:d.error||"UID যাচাই করা যায়নি"};
+    }catch(e){
+      res={error:"সার্ভারে যোগাযোগ করা যাচ্ছে না, পরে আবার চেষ্টা করুন"};
+    }
+  }
+  if(tok!==verifyTok)return;
+  verifying=false;
+  if(res.error){verified=null;$("uidErr").textContent=res.error}
+  else{verified=res;$("uidErr").textContent=""}
+  renderUid();refresh();
+}
+function renderSummary(){
+  if(!selPack){$("summary").innerHTML="";$("payBtn").textContent="প্যাকেজ বাছুন";$("payBtn").classList.remove("ready");return}
+  const v=verified;
+  const rows=[["Package",selPack.name],["Unit Price",TK(selPack.price)],["Quantity",qty],["Player ID",v?esc(v.uid):"—"],["Player Name",v?esc(v.name):"—"]];
+  $("summary").innerHTML=rows.map(r=>`<div class="srow"><span>${r[0]}</span><b>${r[1]}</b></div>`).join("")+`<div class="srow tot"><span>Total Payable</span><b>${TK(total())}</b></div>`;
+  $("payBtn").textContent=`Pay ${TK(total())} with ${payMethod==="wallet"?"Wallet":"Direct Pay"}`;
+  $("payBtn").classList.toggle("ready",!!(verified&&selPack));
+}
+function renderBar(){
+  $("selName").textContent=selPack?(selPack.name+(qty>1?" x"+qty:"")):"প্যাকেজ বাছুন";
+  $("selPrice").textContent=TK(total());
+  $("buyNow").classList.toggle("ready",!!(verified&&selPack));
+}
+async function buyOrder(){
+  const u=me();
+  if(!u){location.hash="login";return toast("আগে লগইন করুন")}
+  if(!verified)return toast("আগে UID যাচাই করুন");
+  if(!selPack)return toast("একটি প্যাকেজ বাছুন");
+  const price=total();
+  if(payMethod==="wallet"&&u.balance<price){toast("ব্যালেন্স কম, আগে ব্যালেন্স যোগ করুন");return location.hash="add"}
+  if(CONFIG.API_BASE){
+    try{
+      const r=await fetch(CONFIG.API_BASE+CONFIG.ORDER_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({uid:verified.uid,pack:selPack.code,qty,method:payMethod})});
+      const d=await r.json().catch(()=>({}));
+      if(!r.ok||d.error)return toast(d.error||"অর্ডার হয়নি, আবার চেষ্টা করুন");
+      if(d.payment_url){location.href=d.payment_url;return}
+    }catch(e){return toast("সার্ভারে যোগাযোগ করা যাচ্ছে না")}
+  }
+  const bal=payMethod==="wallet"?u.balance-price:u.balance;
+  const order={pack:selPack.name+(qty>1?" x"+qty:""),uid:verified.uid,player:verified.name,price,method:payMethod==="wallet"?"Wallet":"Direct Pay",status:"wait",at:Date.now()};
+  const recent=[verified.uid,...(u.recentUids||[]).filter(x=>x!==verified.uid)].slice(0,5);
+  saveMe({balance:bal,orders:[order,...(u.orders||[])],recentUids:recent});
+  toast(CONFIG.API_BASE?"অর্ডার রেকর্ড হয়েছে":"ডেমো: অর্ডার রেকর্ড হয়েছে");
+  location.hash="orders";
+}
+$("buyNow").onclick=buyOrder;
+$("payBtn").onclick=buyOrder;
+
+// ===== Spin =====
+const WH=[["৳30","#e8803a"],["৳2","#f3b94f"],["৳100","#7b44e0"],["৳5","#e8667a"],["৳10","#4a7ff0"],["৳20","#dc78b0"],["৳1","#58b8a8"],["৳3","#9acd48"]];
+$("wh").style.background="conic-gradient("+WH.map((w,i)=>w[1]+" "+i*45+"deg "+(i+1)*45+"deg").join(",")+")";
+WH.forEach((w,i)=>{const a=i*45+22.5;const s=document.createElement("div");s.className="lb";s.textContent="💲\n"+w[0];s.style.transform="rotate("+a+"deg) translateY(-92px) rotate("+(-a)+"deg)";$("wh").appendChild(s)});
+$("spinOpen").onclick=()=>$("sp").classList.add("on");
+$("spClose").onclick=()=>$("sp").classList.remove("on");
+$("spBtn").onclick=()=>{if(!me()){$("sp").classList.remove("on");location.hash="login";return toast("স্পিন করতে আগে লগইন করুন")}toast("স্পিন শীঘ্রই আসছে")};
+route();
+</script>
+</body>
+</html>

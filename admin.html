@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PrimeXshop Admin</title>
+<style>
+:root{--bg:#0a0c1f;--card:#12163a;--line:#232a5c;--text:#f2f4ff;--mute:#9aa3d6;--pri:#2f5bff;--acc:#ff4d2e;--ok:#3ddc84;--gold:#f6b93b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,"Noto Sans Bengali",sans-serif;font-size:15px}
+button,input,select{font:inherit;color:inherit}
+.wrap{max-width:980px;margin:0 auto;padding:16px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.logo{font-weight:900;font-size:22px}.logo b{color:var(--acc)}.logo span{color:var(--pri)}
+.btn{background:var(--pri);color:#fff;border:0;border-radius:10px;padding:9px 14px;font-weight:700;cursor:pointer}
+.btn.ghost{background:var(--card);border:1px solid var(--line)}
+.btn.red{background:#c0392b}
+.btn.sm{padding:6px 10px;font-size:13px}
+input{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:9px 11px;color:var(--text)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.stat b{display:block;font-size:24px;color:var(--gold)}
+.stat small{color:var(--mute)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tabs button{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 14px;cursor:pointer}
+.tabs button.on{background:var(--pri);border-color:var(--pri);color:#fff}
+table{width:100%;border-collapse:collapse}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:middle;font-size:14px}
+th{color:var(--mute);font-weight:700}
+.pill{font-size:12px;padding:3px 9px;border-radius:999px;background:var(--bg);color:var(--mute)}
+.pill.ok{color:var(--ok)}.pill.wait{color:var(--gold)}.pill.bad{color:#ff7a6a}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.muted{color:var(--mute);font-size:13px}
+.lock{max-width:340px;margin:60px auto}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#eef2ff;color:#0a0c1f;padding:10px 16px;border-radius:10px;font-weight:700;opacity:0;transition:.25s;pointer-events:none}
+.toast.on{opacity:1}
+.hide{display:none!important}
+@media (max-width:640px){.stats{grid-template-columns:1fr 1fr}table{font-size:13px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- LOGIN -->
+<div id="lockView" class="lock card">
+  <div class="logo" style="margin-bottom:8px">Prime<b>X</b><span>shop</span> Admin</div>
+  <p class="muted">Admin PIN দিন</p>
+  <div class="row"><input id="pin" type="password" inputmode="numeric" placeholder="PIN" style="flex:1"><button class="btn" id="pinBtn">ঢুকুন</button></div>
+  <p class="muted" id="pinErr" style="color:#ff7a6a"></p>
+  <p class="muted">ডেমো PIN: 1234। আসল সাইটে PIN নয়, আলাদা admin লগইন ব্যবহার হবে।</p>
+</div>
+
+<!-- DASHBOARD -->
+<div id="appView" class="hide">
+  <header>
+    <div class="logo">Prime<b>X</b><span>shop</span> Admin</div>
+    <div class="row"><a class="btn ghost sm" href="index.html" style="text-decoration:none">সাইট দেখুন</a><button class="btn red sm" id="lockBtn">লক</button></div>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><b id="stUsers">0</b><small>কাস্টমার</small></div>
+    <div class="stat"><b id="stDep">0</b><small>অপেক্ষমাণ জমা</small></div>
+    <div class="stat"><b id="stOrd">0</b><small>প্রক্রিয়াধীন অর্ডার</small></div>
+    <div class="stat"><b id="stRev">৳0</b><small>মোট খরচ</small></div>
+  </div>
+
+  <div class="tabs">
+    <button data-t="deposits" class="on">জমা</button>
+    <button data-t="orders">অর্ডার</button>
+    <button data-t="prices">প্যাকেজ ও দাম</button>
+    <button data-t="ann">ঘোষণা</button>
+    <button data-t="customers">কাস্টমার</button>
+  </div>
+
+  <div class="card" id="panel"></div>
+</div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+// ডেমো PIN। আসল admin-এ সার্ভার থেকে যাচাই হবে।
+const ADMIN_PIN="1234";
+const PACKS=[
+  {code:"weekly",name:"Weekly",price:155},{code:"monthly",name:"Monthly",price:770},
+  {code:"d25",name:"25 Diamond",price:22},{code:"d50",name:"50 Diamond",price:36},{code:"d100",name:"100 Diamond",price:70},
+  {code:"d115",name:"115 Diamond",price:79},{code:"d240",name:"240 Diamond",price:158},{code:"d355",name:"355 Diamond",price:237},
+  {code:"d480",name:"480 Diamond",price:316},{code:"d505",name:"505 Diamond",price:336},{code:"d610",name:"610 Diamond",price:400},
+  {code:"d850",name:"850 Diamond",price:558},{code:"d1090",name:"1090 Diamond",price:715},{code:"d1240",name:"1240 Diamond",price:800},
+  {code:"d1720",name:"1720 Diamond",price:1116},{code:"d2090",name:"2090 Diamond",price:1358},{code:"d2530",name:"2530 Diamond",price:1600},
+  {code:"d4010",name:"4010 Diamond",price:2568},{code:"d5060",name:"5060 Diamond",price:3200},{code:"d10120",name:"10120 Diamond",price:6300},
+  {code:"2weekly",name:"2x Weekly",price:316},{code:"3weekly",name:"3x Weekly",price:474},{code:"4weekly",name:"4x Weekly",price:632},
+  {code:"combo",name:"Weekly + Monthly",price:460},{code:"wlite",name:"Weekly Lite",price:60},
+  {code:"levelup",name:"Level Up Pack",price:150},{code:"indo",name:"Indonesia 100",price:95},{code:"like",name:"100 Like",price:0}
+];
+const $=id=>document.getElementById(id);
+const money=n=>"৳"+Number(n||0).toLocaleString("en-US");
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const readUsers=()=>{try{return JSON.parse(localStorage.getItem("px_users"))||{}}catch(e){return{}}};
+const writeUsers=u=>localStorage.setItem("px_users",JSON.stringify(u));
+const readSet=()=>{try{return JSON.parse(localStorage.getItem("px_settings"))||{}}catch(e){return{}}};
+const writeSet=v=>localStorage.setItem("px_settings",JSON.stringify(v));
+function toast(t){const el=$("toast");el.textContent=t;el.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("on"),2000)}
+const when=t=>t?new Date(t).toLocaleString("bn-BD"):"";
+
+// ---- লগইন ----
+$("pinBtn").onclick=()=>{
+  if($("pin").value===ADMIN_PIN){sessionStorage.setItem("px_admin","1");show()}
+  else $("pinErr").textContent="PIN ভুল";
+};
+$("pin").addEventListener("keydown",e=>{if(e.key==="Enter")$("pinBtn").click()});
+$("lockBtn").onclick=()=>{sessionStorage.removeItem("px_admin");location.reload()};
+
+function show(){
+  const ok=sessionStorage.getItem("px_admin")==="1";
+  $("lockView").classList.toggle("hide",ok);
+  $("appView").classList.toggle("hide",!ok);
+  if(ok)renderAll();
+}
+
+// ---- ট্যাব ----
+let tab="deposits";
+document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{
+  tab=b.dataset.t;
+  document.querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("on",x===b));
+  renderPanel();
+});
+
+function renderAll(){renderStats();renderPanel()}
+function renderStats(){
+  const users=readUsers();const list=Object.values(users);
+  const dep=list.reduce((a,u)=>a+(u.deposits||[]).filter(d=>d.status==="wait").length,0);
+  const ord=list.reduce((a,u)=>a+(u.orders||[]).filter(o=>o.status==="wait").length,0);
+  const rev=list.reduce((a,u)=>a+(u.orders||[]).filter(o=>o.status!=="cancelled").reduce((b,o)=>b+Number(o.price||0),0),0);
+  $("stUsers").textContent=Object.keys(users).length;
+  $("stDep").textContent=dep;
+  $("stOrd").textContent=ord;
+  $("stRev").textContent=money(rev);
+}
+function renderPanel(){
+  if(tab==="deposits")return panelDeposits();
+  if(tab==="orders")return panelOrders();
+  if(tab==="prices")return panelPrices();
+  if(tab==="ann")return panelAnn();
+  if(tab==="customers")return panelCustomers();
+}
+
+// ---- জমা (Add Money) ----
+function panelDeposits(){
+  const users=readUsers();
+  const rows=[];
+  Object.entries(users).forEach(([email,u])=>(u.deposits||[]).forEach((d,i)=>rows.push({email,name:u.name,i,...d})));
+  rows.sort((a,b)=>b.at-a.at);
+  $("panel").innerHTML=`<h3 style="margin-top:0">Add Money জমা</h3><p class="muted">পেমেন্ট যাচাই করে "অনুমোদন" চাপলে কাস্টমারের ব্যালেন্স বাড়বে।</p>
+  ${rows.length?`<table><tr><th>কাস্টমার</th><th>পরিমাণ</th><th>মাধ্যম</th><th>সময়</th><th>অবস্থা</th><th></th></tr>
+  ${rows.map(r=>`<tr><td>${esc(r.name)}<div class="muted">${esc(r.email)}</div></td><td>${money(r.amt)}</td><td>${esc(r.method)}</td><td class="muted">${when(r.at)}</td>
+  <td><span class="pill ${r.status==="ok"?"ok":r.status==="rejected"?"bad":"wait"}">${r.status==="ok"?"অনুমোদিত":r.status==="rejected"?"বাতিল":"অপেক্ষমাণ"}</span></td>
+  <td>${r.status==="wait"?`<div class="row"><button class="btn sm" data-ok="${esc(r.email)}|${r.i}">অনুমোদন</button><button class="btn sm red" data-no="${esc(r.email)}|${r.i}">বাতিল</button></div>`:""}</td></tr>`).join("")}
+  </table>`:`<p class="muted">কোনো জমা নেই</p>`}`;
+  $("panel").querySelectorAll("[data-ok]").forEach(b=>b.onclick=()=>decideDeposit(b.dataset.ok,true));
+  $("panel").querySelectorAll("[data-no]").forEach(b=>b.onclick=()=>decideDeposit(b.dataset.no,false));
+}
+function decideDeposit(key,approve){
+  const [email,i]=key.split("|");const users=readUsers();const u=users[email];if(!u)return;
+  const d=u.deposits[Number(i)];if(!d||d.status!=="wait")return;
+  if(approve){d.status="ok";u.balance=Number(u.balance||0)+Number(d.amt)}else d.status="rejected";
+  writeUsers(users);toast(approve?"ব্যালেন্স যোগ হয়েছে":"জমা বাতিল");renderAll();
+}
+
+// ---- অর্ডার ----
+function panelOrders(){
+  const users=readUsers();const rows=[];
+  Object.entries(users).forEach(([email,u])=>(u.orders||[]).forEach((o,i)=>rows.push({email,name:u.name,i,...o})));
+  rows.sort((a,b)=>b.at-a.at);
+  $("panel").innerHTML=`<h3 style="margin-top:0">অর্ডার</h3><p class="muted">অর্ডার সম্পন্ন হলে "সম্পন্ন" চাপুন। বাতিল করলে ওয়ালেটের টাকা ফেরত যাবে।</p>
+  ${rows.length?`<table><tr><th>কাস্টমার</th><th>প্যাকেজ</th><th>UID</th><th>দাম</th><th>অবস্থা</th><th></th></tr>
+  ${rows.map(r=>`<tr><td>${esc(r.player||r.name)}<div class="muted">${esc(r.email)}</div></td><td>${esc(r.pack)}<div class="muted">${esc(r.method)}</div></td><td>${esc(r.uid)}</td><td>${money(r.price)}</td>
+  <td><span class="pill ${r.status==="done"?"ok":r.status==="cancelled"?"bad":"wait"}">${r.status==="done"?"সম্পন্ন":r.status==="cancelled"?"বাতিল":"প্রক্রিয়াধীন"}</span></td>
+  <td>${r.status==="wait"?`<div class="row"><button class="btn sm" data-done="${esc(r.email)}|${r.i}">সম্পন্ন</button><button class="btn sm red" data-cancel="${esc(r.email)}|${r.i}">বাতিল</button></div>`:""}</td></tr>`).join("")}
+  </table>`:`<p class="muted">কোনো অর্ডার নেই</p>`}`;
+  $("panel").querySelectorAll("[data-done]").forEach(b=>b.onclick=()=>setOrder(b.dataset.done,"done"));
+  $("panel").querySelectorAll("[data-cancel]").forEach(b=>b.onclick=()=>setOrder(b.dataset.cancel,"cancelled"));
+}
+function setOrder(key,status){
+  const [email,i]=key.split("|");const users=readUsers();const u=users[email];if(!u)return;
+  const o=u.orders[Number(i)];if(!o||o.status!=="wait")return;
+  o.status=status;
+  if(status==="cancelled"&&o.method==="Wallet")u.balance=Number(u.balance||0)+Number(o.price);
+  writeUsers(users);toast(status==="done"?"অর্ডার সম্পন্ন":"অর্ডার বাতিল, টাকা ফেরত");renderAll();
+}
+
+// ---- প্যাকেজ ও দাম ----
+function panelPrices(){
+  const pr=readSet().prices||{};
+  $("panel").innerHTML=`<h3 style="margin-top:0">প্যাকেজ ও দাম</h3><p class="muted">দাম বদলে "সংরক্ষণ" চাপুন। সাইটে সঙ্গে সঙ্গে নতুন দাম দেখাবে।</p>
+  <table><tr><th>প্যাকেজ</th><th>কোড</th><th>দাম (TK)</th></tr>
+  ${PACKS.map(p=>`<tr><td>${esc(p.name)}</td><td class="muted">${p.code}</td><td><input type="number" min="0" data-code="${p.code}" value="${pr[p.code]!==undefined?pr[p.code]:p.price}" style="width:110px"></td></tr>`).join("")}
+  </table><div style="margin-top:12px"><button class="btn" id="savePrices">সংরক্ষণ করুন</button></div>`;
+  $("savePrices").onclick=()=>{
+    const out={};
+    $("panel").querySelectorAll("[data-code]").forEach(inp=>{out[inp.dataset.code]=Number(inp.value)||0});
+    const s=readSet();s.prices=out;writeSet(s);toast("দাম সংরক্ষণ হয়েছে");
+  };
+}
+
+// ---- ঘোষণা ----
+function panelAnn(){
+  const list=readSet().announcements||[];
+  $("panel").innerHTML=`<h3 style="margin-top:0">ঘোষণা</h3>
+  <div class="row" style="margin-bottom:12px"><input id="aT" placeholder="শিরোনাম" style="flex:1;min-width:200px"><input id="aD" placeholder="তারিখ, যেমন ৭ নভেম্বর" style="flex:1;min-width:160px"><button class="btn" id="aAdd">যোগ করুন</button></div>
+  ${list.length?list.map((a,i)=>`<div class="card row" style="justify-content:space-between"><div><strong>${esc(a.title)}</strong><div class="muted">${esc(a.date||"")}</div></div><button class="btn sm red" data-del="${i}">মুছুন</button></div>`).join(""):`<p class="muted">কোনো ঘোষণা নেই</p>`}`;
+  $("aAdd").onclick=()=>{
+    const t=$("aT").value.trim();if(!t)return toast("শিরোনাম লিখুন");
+    const s=readSet();s.announcements=[{title:t,date:$("aD").value.trim()},...(s.announcements||[])];writeSet(s);toast("ঘোষণা যোগ হয়েছে");panelAnn();
+  };
+  $("panel").querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{
+    const s=readSet();s.announcements=(s.announcements||[]).filter((_,i)=>i!==Number(b.dataset.del));writeSet(s);toast("মুছে ফেলা হয়েছে");panelAnn();
+  });
+}
+
+// ---- কাস্টমার ----
+function panelCustomers(){
+  const users=readUsers();const list=Object.entries(users);
+  $("panel").innerHTML=`<h3 style="margin-top:0">কাস্টমার</h3>
+  ${list.length?`<table><tr><th>নাম</th><th>ইমেইল</th><th>ব্যালেন্স</th><th>অর্ডার</th><th>ব্যালেন্স সমন্বয়</th></tr>
+  ${list.map(([email,u])=>`<tr><td>${esc(u.name)}</td><td class="muted">${esc(email)}</td><td>${money(u.balance)}</td><td>${(u.orders||[]).length}</td>
+  <td><div class="row"><input type="number" min="0" id="adj-${btoa(email).replace(/=/g,"")}" placeholder="৳" style="width:90px"><button class="btn sm" data-add="${esc(email)}">যোগ</button><button class="btn sm red" data-sub="${esc(email)}">কমান</button></div></td></tr>`).join("")}
+  </table>`:`<p class="muted">এখনো কোনো কাস্টমার নেই</p>`}`;
+  const adj=email=>Number($("adj-"+btoa(email).replace(/=/g,"")).value)||0;
+  $("panel").querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>changeBal(b.dataset.add,adj(b.dataset.add)));
+  $("panel").querySelectorAll("[data-sub]").forEach(b=>b.onclick=()=>changeBal(b.dataset.sub,-adj(b.dataset.sub)));
+}
+function changeBal(email,amt){
+  if(!amt)return toast("পরিমাণ লিখুন");
+  const users=readUsers();const u=users[email];if(!u)return;
+  u.balance=Math.max(0,Number(u.balance||0)+amt);writeUsers(users);toast("ব্যালেন্স আপডেট হয়েছে");renderAll();
+}
+
+show();
+</script>
+</body>
+</html>
